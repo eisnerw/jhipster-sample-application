@@ -42,7 +42,9 @@
     "jwtSecretKey": "ZjVjYjhhOTU3ZGE4MmNmZTBjZmVhYWNmY2RhNjIxOTBhNjY3MjRkNTMzYmFhMmQ5OTUxZmI2ZDU3ZGY2ZjlmMzk4MTQ3YmM2ZmViNDA3YTJlZWE3ZTI0NjFhMmEyMzFiMGM2YTQ1NzJkMjgxZmViNDUwNDY2OGNkMGI3ZTA0MWM=",
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "reactive": false
+    "reactive": false,
+    "entities": ["Region", "Country", "Location", "Department", "Task", "Employee", "Job", "JobHistory", "Birthday"],
+    "lastLiquibaseTimestamp": 1621022589000
   },
   "git-provider": "GitHub",
   "git-company": "eisnerw",

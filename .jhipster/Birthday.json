@@ -1,0 +1,32 @@
+{
+  "fields": [
+    {
+      "fieldName": "lname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dob",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "isAlive",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "additional",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "service": "serviceImpl",
+  "dto": "no",
+  "jpaMetamodelFiltering": false,
+  "readOnly": false,
+  "pagination": "infinite-scroll",
+  "name": "Birthday",
+  "changelogDate": "20210514200309"
+}

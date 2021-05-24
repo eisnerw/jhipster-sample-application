@@ -35,7 +35,8 @@ export class BirthdayComponent implements OnInit {
     { field: 'isAlive', sortable: true, filter: true },
   ];
 
-  rowData = new Observable<IBirthday[]>();
+  rowData = new Observable<any[]>();
+  // rowData = new Observable<IBirthday[]>();
   /*
   rowData = [
     { lname: 'Toyota', fname: 'Celica', dob: '2021-05-14T04:00:00.000Z' },
@@ -84,6 +85,11 @@ export class BirthdayComponent implements OnInit {
   loadPage(page: number): void {
     this.page = page;
     this.loadAll();
+  }
+
+  clearFilters(table: any, searchInput: any): void {
+    table.reset();
+    searchInput.value = '';
   }
 
   ngOnInit(): void {

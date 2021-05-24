@@ -90,6 +90,88 @@
       </tbody>
     </table>
   </div-->
-  <ag-grid-angular style="width: 100%; height: 400px" class="ag-theme-alpine" [rowData]="rowData | async" [columnDefs]="columnDefs">
-  </ag-grid-angular>
+  <!--ag-grid-angular style="width: 100%; height: 400px" class="ag-theme-alpine" [rowData]="rowData | async" [columnDefs]="columnDefs">
+  </ag-grid-angular-->
+  <ng-container *ngIf="rowData | async as birthday">
+    <p-table #birthdays [value]="birthday" [resizableColumns]="true" [globalFilterFields]="['lname', 'fname', 'additional']" dataKey="id">
+      <ng-template pTemplate="caption">
+        <div class="p-d-flex">
+          <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clearFilters(birthdays, searchInput)">
+            Clear
+          </button>
+          <span class="p-input-icon-left p-ml-auto">
+            <i class="pi pi-search"></i>
+            <input
+              #searchInput
+              pInputText
+              type="text"
+              (input)="birthdays.filterGlobal($any($event.target).value, 'contains')"
+              placeholder="Search keyword"
+            />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pResizableColumn [pSortableColumn]="'lname'">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Name
+              <p-sortIcon [field]="'lname'"></p-sortIcon>
+              <p-columnFilter type="text" field="lname" display="menu"></p-columnFilter>
+            </div>
+          </th>
+          <th pResizableColumn [pSortableColumn]="'fname'">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              First
+              <p-sortIcon [field]="'fname'"></p-sortIcon>
+              <p-columnFilter type="text" field="fname" display="menu"></p-columnFilter>
+            </div>
+          </th>
+          <th pResizableColumn [pSortableColumn]="'dob'">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Date of Birth
+              <p-sortIcon [field]="'dob'"></p-sortIcon>
+              <p-columnFilter
+                type="date"
+                field="dob"
+                matchMode="in"
+                display="menu"
+                [showMatchModes]="true"
+                [showOperator]="true"
+                [showAddButton]="true"
+              >
+                <ng-template pTemplate="header">
+                  <div class="p-px-3 p-pt-3 p-pb-0">
+                    <span class="p-text-bold">Date Picker</span>
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                  <p-calendar [(ngModel)]="page" [monthNavigator]="true" [yearNavigator]="true" yearRange="1000:2030" inputId="navigators">
+                  </p-calendar>
+                </ng-template>
+              </p-columnFilter>
+            </div>
+          </th>
+          <th pResizableColumn [pSortableColumn]="'additional'">
+            <div class="p-d-flex p-jc-between p-ai-center">
+              Sign
+              <p-sortIcon [field]="'additional'"></p-sortIcon>
+              <p-columnFilter type="text" field="additional" display="menu"></p-columnFilter>
+            </div>
+          </th>
+          <th>Alive?</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-birthday>
+        <tr>
+          <td>{{ birthday.lname }}</td>
+          <td>{{ birthday.fname }}</td>
+          <td>{{ birthday.dob | date: 'MM/dd/yyyy' }}</td>
+          <td>{{ birthday.additional }}</td>
+          <td *ngIf="birthday.isAlive">Yes</td>
+          <td *ngIf="!birthday.isAlive">No</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </ng-container>
 </div>

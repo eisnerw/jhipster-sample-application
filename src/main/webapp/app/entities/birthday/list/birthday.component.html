@@ -146,7 +146,14 @@
                   </div>
                 </ng-template>
                 <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                  <p-calendar [(ngModel)]="page" [monthNavigator]="true" [yearNavigator]="true" yearRange="1000:2030" inputId="navigators">
+                  <p-calendar
+                    [(ngModel)]="page"
+                    (ngModelChange)="setDobFilter($event, birthdays.filters.dob)"
+                    [monthNavigator]="true"
+                    [yearNavigator]="true"
+                    yearRange="1000:2030"
+                    inputId="navigators"
+                  >
                   </p-calendar>
                 </ng-template>
               </p-columnFilter>

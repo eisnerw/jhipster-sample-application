@@ -76,6 +76,11 @@ export class BirthdayComponent implements OnInit {
       );
   }
 
+  setDobFilter($event: any, filters: any): void {
+    const lastFilter = filters[filters.length - 1];
+    lastFilter.value = $event;
+  }
+
   reset(): void {
     this.page = 0;
     this.birthdays = [];
@@ -123,6 +128,10 @@ export class BirthdayComponent implements OnInit {
     this.links = this.parseLinks.parse(headers.get('link') ?? '');
     if (data) {
       for (const d of data) {
+        const dtAny: any = d.dob;
+        dtAny.getTime = function (): Date {
+          return new Date(dtAny.toString());
+        };
         this.birthdays.push(d);
       }
       this.rowData = of(this.birthdays);
